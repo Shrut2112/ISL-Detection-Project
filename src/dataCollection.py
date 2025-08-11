@@ -47,6 +47,7 @@ with mp_hands.Hands(max_num_hands = 2,model_complexity =1, min_detection_confide
                     mp_drawing_styles.get_default_hand_landmarks_style(),
                     mp_drawing_styles.get_default_hand_connections_style()
                 )
+                
             if cv2.waitKey(1) & 0xFF == ord('c'):
                 if count_for_label < 100:
                     count_for_label+=1
