@@ -25,13 +25,13 @@ with mp_hands.Hands(max_num_hands = 2,model_complexity =1, min_detection_confide
 
     while True:
 
-        ret,frame = video.read()
-
+        ret,img = video.read()
+        frame = cv2.flip(img,1)
         frame_rgb = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
 
         results = hands.process(frame_rgb)
 
-        flipped = cv2.flip(frame,1)
+
         if results.multi_hand_landmarks:
             # passing the result of the frame to detect if there is multiple hands
             for hand_landmarks in results.multi_hand_landmarks:
@@ -56,9 +56,9 @@ with mp_hands.Hands(max_num_hands = 2,model_complexity =1, min_detection_confide
             pred_idx = model.predict(row_np)
             prediction = classes[np.argmax(pred_idx)]
 
-            cv2.rectangle(flipped,(x_min-20,y_min-60),(x_min+30,y_min-20),(255,0,255),-1)
-            cv2.putText(flipped,prediction,(x_min,y_min-30),cv2.FONT_HERSHEY_SIMPLEX,0.8,(255,0,0),4)
-            cv2.rectangle(flipped, (x_min-20, y_min-20), (x_max+20, y_max+20), (255,0,255), 5)
+            cv2.rectangle(frame,(x_min-20,y_min-60),(x_min+30,y_min-20),(255,0,255),-1)
+            cv2.putText(frame,prediction,(x_min,y_min-30),cv2.FONT_HERSHEY_SIMPLEX,0.8,(255,0,0),4)
+            cv2.rectangle(frame, (x_min-20, y_min-20), (x_max+20, y_max+20), (255,0,255), 5)
 
             if prediction == last_pred:
                 print(f'gesture {last_pred} {gesture_count}')
@@ -66,10 +66,11 @@ with mp_hands.Hands(max_num_hands = 2,model_complexity =1, min_detection_confide
             else:
                 last_pred = prediction
                 
-            if gesture_count == 30:
+            if gesture_count == 20:
                 print(f'{last_pred} printed')
                 gesture_count = 0
-                word += last_pred                    
+                word += last_pred           
+
             h,w,_ = frame.shape
             x_coords = [(lm.x*w) for lm in hand_landmarks.landmark]
             y_coords = [(lm.y*h) for lm in hand_landmarks.landmark]
@@ -82,9 +83,9 @@ with mp_hands.Hands(max_num_hands = 2,model_complexity =1, min_detection_confide
 
         
         
-        cv2.putText(flipped,word,(100,50),cv2.FONT_HERSHEY_COMPLEX,1,(5,25,55),2)
+        cv2.putText(frame,word,(100,50),cv2.FONT_HERSHEY_COMPLEX,1,(5,25,55),2)
     
-        cv2.imshow('MediaPipe Hands',flipped)
+        cv2.imshow('MediaPipe Hands',frame)
         if cv2.waitKey(1) & 0xFF == ord('x'):
             break
 cv2.destroyAllWindows()
