@@ -2,7 +2,6 @@ import cv2
 import mediapipe as mp
 import numpy as np
 import time
-import math
 from tensorflow.keras.models import load_model
 from src.utils.hands_utils import get_both_hands
 from src.utils.finger_utils import finger_open
@@ -121,11 +120,14 @@ with mp_hands.Hands(max_num_hands=2, model_complexity=1,
 
             row = get_both_hands(results, frame)
             row_np = np.array(row).reshape(1, -1)
-            pred_idx = model.predict(row_np)
-            prediction = classes[np.argmax(pred_idx)]
+            pred_prob = model.predict(row_np)
+            pred_idx = np.argmax(pred_prob)
+            prediction = classes[pred_idx]
+            confidence = pred_prob[0][pred_idx]
 
-            cv2.rectangle(frame, (x_min - 20, y_min - 60), (x_min + 30, y_min - 20), (255, 0, 255), -1)
-            cv2.putText(frame, prediction, (x_min, y_min - 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 4)
+            cv2.rectangle(frame, (x_min - 20, y_min - 60), (x_min + 120, y_min - 20), (255, 0, 255), -1)
+            display_text = f'{prediction} {confidence*100:.1f}%'
+            cv2.putText(frame, display_text, (x_min, y_min - 35),cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
             cv2.rectangle(frame, (x_min - 20, y_min - 20), (x_max + 20, y_max + 20), (255, 0, 255), 5)
 
             if prediction == last_pred:
