@@ -1,0 +1,8 @@
+Holistic keypoints - Holistic means combining all these regions (face + hands + body) into one unified set of keypoints.
+not just particular region landmarks
+pele mediapipe landmarks of hands only nikal rhe the and directly appending in csv,
+but by holistic - make conncatenated np array of all face body hands keypoints and then append in csv
+1. data collection (dynamic - multiple frames)
+2. train lstm on sequences(words)
+3. real time prediction
+
