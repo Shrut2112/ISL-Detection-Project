@@ -4,8 +4,8 @@ from flask_socketio import SocketIO
 import cv2
 import numpy as np
 import base64
-from speech_to_text import GestureViewer
-from Processing import HandGestureDetector
+from backend.src.utils.speech_to_text import GestureViewer
+from backend.src.utils.Processing import HandGestureDetector
 import speech_recognition as sr
 import io
 from pydub import AudioSegment
