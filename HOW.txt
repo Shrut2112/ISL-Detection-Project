@@ -6,3 +6,7 @@ but by holistic - make conncatenated np array of all face body hands keypoints a
 2. train lstm on sequences(words)
 3. real time prediction
 
+Why use mediapipe + lstm ?
+tried pretrained model like mobileNet model followed by LSTM layers. Giving very poor accuracy 
+so for good accuracy abd fast training of the model come up with the idea of using mediapipe holistic + lstm model 
+has nearly half parameters compare to mobileNet+cnn model and good accuracy.
