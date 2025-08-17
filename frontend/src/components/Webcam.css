@@ -1,0 +1,137 @@
+.camera-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .main-title {
+    text-align: center;
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+  }
+  
+  .status-bar {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .status-bar.active {
+    background: rgba(72, 187, 120, 0.15);
+    color: #2f855a;
+  }
+  
+  .status-bar.inactive {
+    background: rgba(245, 101, 101, 0.15);
+    color: #c53030;
+  }
+  
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: currentColor;
+  }
+  
+  .webcam-container {
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .webcam-feed {
+    width: 100%;
+    height: auto;
+  }
+  
+  .prediction-box {
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+  }
+  
+  .prediction-title {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 4px;
+  }
+  
+  .prediction-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2d3748;
+  }
+  
+  .letter-value {
+    font-size: 1.5rem;
+    color: #4c51bf;
+  }
+  
+  .cursor {
+    color: #a0aec0;
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+  
+  .confidence-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  
+  .confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #48bb78, #38a169);
+    transition: width 0.3s ease-in-out;
+  }
+  /* Start/Stop Detection Button */
+.detection-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 18px;
+  margin: 15px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Start mode - green like Speech-to-Gestures */
+.detection-btn.start {
+  background-color: #28a745;
+  color: white;
+}
+
+.detection-btn.start:hover {
+  background-color: #218838;
+}
+
+/* Stop mode - red */
+.detection-btn.stop {
+  background-color: #dc3545;
+  color: white;
+}
+
+.detection-btn.stop:hover {
+  background-color: #b02a37;
+}
